@@ -18,6 +18,7 @@ public class LoginPage {
 	By usernameloc=By.id("user-name");
 	By passwordloc=By.id("password");
 	By loginbtnloc=By.id("login-button");
+	By errormsg=By.xpath("//h3[@data-test='error']");
 	
 	public void launchURL(String appurl)
 	{
@@ -43,5 +44,16 @@ public class LoginPage {
 	{
 		elementutil.OnClick(loginbtnloc);	
 		return new ProductPage(driver);
+	}
+	
+	public boolean validateErrorMsg(String expectedErrormsg)
+	{
+		System.out.println(elementutil.getText(errormsg)); 
+	String actErrorMsg=elementutil.getText(errormsg);
+	if(expectedErrormsg.equalsIgnoreCase(actErrorMsg))
+	{
+		return true;
+	}
+	return false;
 	}
 }

@@ -59,4 +59,9 @@ public class StepDefination {
 	}
 
 
+@Then("Validate locked out user error message appeared is {string}")
+public void validate_locked_out_user_error_message_appeared_is(String EXpectedErrorMsg) {
+   Assert.assertTrue("Required error msg is not appearing.", loginpage.validateErrorMsg(EXpectedErrorMsg));
+}
+
 }

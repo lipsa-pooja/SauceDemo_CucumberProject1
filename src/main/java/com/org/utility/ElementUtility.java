@@ -58,5 +58,9 @@ WebElement wb=findElement(locator);
 wb.click();
 }
 
-
+public String getText(By locator)
+{
+	WebElement wb=findElement(locator);
+	return wb.getText();
+}
 }

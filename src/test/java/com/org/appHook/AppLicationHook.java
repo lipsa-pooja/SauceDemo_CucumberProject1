@@ -1,7 +1,12 @@
 package com.org.appHook;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import com.org.driverFactory.DriverFactory;
@@ -9,6 +14,7 @@ import com.org.utility.ConfigPropertyReader;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 
 public class AppLicationHook {
 	ConfigPropertyReader config;
@@ -28,9 +34,20 @@ public class AppLicationHook {
 		 driverfactory=new DriverFactory();
 		 driver=driverfactory.init_Driver(prop);
 	}
-	@After(order=0)
-	public void tearDown()
+	@After(order=1)
+	public void captureScreenshot(Scenario sc) throws IOException
 	{
+		if(sc.isFailed()) {
+			String screenshotName = sc.getName().replace(" ", "_");
+			 byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+		     sc.attach(screenshot, "image/png", screenshotName); 
+		}
+		
+	}
+	
+	@After(order = 0)
+	public void tearDown() {
+		driver.close();
 		
 	}
 
