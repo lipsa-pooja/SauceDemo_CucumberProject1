@@ -11,16 +11,14 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 	WebDriver driver;
-	ThreadLocal<WebDriver> tldriver=new ThreadLocal<WebDriver>();
-	public void init_Driver(Properties prop)
-	{
-		if(prop.getProperty("broswerName").equalsIgnoreCase("chrome"))
-		{
+	static ThreadLocal<WebDriver> tldriver = new ThreadLocal<WebDriver>();
+
+	public WebDriver init_Driver(Properties prop) {
+		if (prop.getProperty("broswerName").equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			tldriver.set(new ChromeDriver());
 		}
-		if(prop.getProperty("browserName").equalsIgnoreCase("firefox"))
-		{
+		if (prop.getProperty("browserName").equalsIgnoreCase("firefox")) {
 			WebDriverManager.chromedriver().setup();
 			tldriver.set(new FirefoxDriver());
 		}
@@ -28,9 +26,11 @@ public class DriverFactory {
 		getDriver().manage().deleteAllCookies();
 		getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
+		return getDriver();
+
 	}
-	public WebDriver getDriver()
-	{
+
+	public static WebDriver getDriver() {
 		return tldriver.get();
 	}
 
