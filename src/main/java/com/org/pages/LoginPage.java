@@ -33,4 +33,15 @@ public class LoginPage {
 			return false;
 		}
 	}
+	
+	public void addCredentials(String username,String password)
+	{
+		elementutil.senkeys(usernameloc, username);
+		elementutil.senkeys(passwordloc, password);
+	}
+	public ProductPage clickOnLoginbtn()
+	{
+		elementutil.OnClick(loginbtnloc);	
+		return new ProductPage(driver);
+	}
 }

@@ -22,6 +22,7 @@ public void launchAppURL(String url)
 
 public String getTitle()
 {
+	
 	return driver.getTitle();
 }
 
@@ -44,4 +45,18 @@ public void waitTillDisplay(By locator)
 	WebDriverWait wait=new WebDriverWait(driver, 10);
 	wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 }
+
+public void senkeys(By locator,String input)
+{
+	WebElement wb=findElement(locator);
+	wb.sendKeys(input);
+}
+
+public void OnClick(By locator)
+{
+WebElement wb=findElement(locator);
+wb.click();
+}
+
+
 }
