@@ -18,8 +18,8 @@ public class DriverFactory {
 			WebDriverManager.chromedriver().setup();
 			tldriver.set(new ChromeDriver());
 		}
-		if (prop.getProperty("browserName").equalsIgnoreCase("firefox")) {
-			WebDriverManager.chromedriver().setup();
+		else if (prop.getProperty("browserName").equalsIgnoreCase("firefox")) {
+			WebDriverManager.firefoxdriver().setup();
 			tldriver.set(new FirefoxDriver());
 		}
 		getDriver().manage().window().maximize();
