@@ -1,5 +1,8 @@
 package com.org.utility;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -63,4 +66,43 @@ public String getText(By locator)
 	WebElement wb=findElement(locator);
 	return wb.getText();
 }
+
+public List<WebElement> findElements(By locator)
+{
+	return driver.findElements(locator);
+}
+public void ClickselectedOptionFromDropdown(String sortOption,By locator)
+{
+	List<WebElement> list=findElements(locator);
+
+	for(WebElement wb:list)
+	{
+		String dropdowntext=wb.getText();
+		if(dropdowntext.equalsIgnoreCase(sortOption))
+		{
+			wb.click();
+			break;
+		}
+		
+	}
+}
+
+public List<Double> getItemsInList(By locator)
+{
+	List<Double> actuallist=new ArrayList<Double>();
+	List<WebElement> list=findElements(locator);
+	for(WebElement wb:list)
+	{
+		String itemPricelist=wb.getText();
+		String itemprice=itemPricelist.replace("$","");
+		Double dprice=Double.parseDouble(itemprice);
+		actuallist.add(dprice);
+		//System.out.println(dprice);	
+	}
+	System.out.println(actuallist);//without sorting
+	return actuallist;
+}
+
+
+
 }

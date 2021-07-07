@@ -47,7 +47,7 @@ public class AppLicationHook {
 	
 	@After(order = 0)
 	public void tearDown() {
-		driver.close();
+		//driver.close();
 		
 	}
 

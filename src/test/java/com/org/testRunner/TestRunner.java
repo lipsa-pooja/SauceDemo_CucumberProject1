@@ -6,25 +6,16 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(
-		features= {"./src/test/resources/featuresFiles"},
-		glue= {"com.org.stepDefination", "com.org.appHook"},
-		
-		plugin= {"pretty",
-				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
-		dryRun=false
-		
-		
-		
-				
-	)
+@CucumberOptions(features = { "./src/test/resources/featuresFiles/ProductFunctionality.feature" }, glue = {
+		"com.org.stepDefination", "com.org.appHook" },
+
+		plugin = { "pretty", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" }, dryRun = false
+
+)
 
 public class TestRunner {
-	
-	
 
 }
-
 
 //features=Features Options helps Cucumber to locate the Feature file in the project folder structure
 //glue=path where exactly our stepDefination file and application hook is located

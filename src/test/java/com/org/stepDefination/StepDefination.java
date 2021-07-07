@@ -64,4 +64,31 @@ public void validate_locked_out_user_error_message_appeared_is(String EXpectedEr
    Assert.assertTrue("Required error msg is not appearing.", loginpage.validateErrorMsg(EXpectedErrorMsg));
 }
 
+@Then("Verify Product page appear")
+public void verify_product_page_appear() {
+   Assert.assertTrue("verify product page is not appearing", productpage.validateProductPageAppear());
+}
+
+@Then("Verify Prodcut Sort Conatiner appears on the page")
+public void verify_prodcut_sort_conatiner_appears_on_the_page() {
+	 Assert.assertTrue("Prodcut Sort Conatiner is not appearing on the page", productpage.VerifyProduutSortConatinerAppears());
+}
+
+@Then("Validate By Default {string} selected in Prodcut Sort Conatiner")
+public void validate_by_default_selected_in_prodcut_sort_conatiner(String actdefaultselectednameinsortcontainer) {
+ Assert.assertEquals("Actual Ddefault selected name in sort_container is not matched with Expected.", productpage.defaultSelectedNameInSortContainer(), actdefaultselectednameinsortcontainer);   
+}
+
+@When("Select {string} option in Prodcut Sort Conatiner")
+public void select_option_in_prodcut_sort_conatiner(String sortOption) {
+   productpage.selectOptionInSortContainerDropDown(sortOption);
+}
+
+@Then("Validate all the Products are appearing as per low to high price")
+public void validate_all_the_products_are_appearing_as_sorted() {
+   
+   Assert.assertTrue("Required item price are not sorted order", productpage.validateSortingOfItemPriceINProductPage());
+}
+
+
 }
